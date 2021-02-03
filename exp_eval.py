@@ -107,14 +107,4 @@ def prefix_to_postfix(input_str):
                 x = post_stack.pop()
                 i += 1
                 post_stack.push(y+' '+x+' **')
-            elif input_str[length - i] == '>>':
-                y = post_stack.pop()
-                x = post_stack.pop()
-                i += 1
-                post_stack.push(y+' '+x+' >>')
-            elif input_str[length - i] == '<<':
-                y = post_stack.pop()
-                x = post_stack.pop()
-                i += 1
-                post_stack.push(y+' '+x+' <<')
     return post_stack.pop()

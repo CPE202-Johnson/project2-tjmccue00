@@ -7,6 +7,10 @@ class test_expressions(unittest.TestCase):
     def test_postfix_eval_01(self):
         self.assertAlmostEqual(postfix_eval("3 5 +"), 8)
 
+    def test_postfix_eval_11(self):
+        with self.assertRaises(ValueError):
+            postfix_eval("4 0 /")
+
     def test_postfix_eval_02(self):
         try:
             postfix_eval("blah")
@@ -17,6 +21,48 @@ class test_expressions(unittest.TestCase):
     def test_postfix_eval_03(self):
         try:
             postfix_eval("4 +")
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Insufficient operands")
+
+    def test_postfix_eval_05(self):
+        try:
+            postfix_eval("4 -")
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Insufficient operands")
+
+    def test_postfix_eval_06(self):
+        try:
+            postfix_eval("4 *")
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Insufficient operands")
+
+    def test_postfix_eval_07(self):
+        try:
+            postfix_eval("4 /")
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Insufficient operands")
+
+    def test_postfix_eval_08(self):
+        try:
+            postfix_eval("4 **")
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Insufficient operands")
+
+    def test_postfix_eval_09(self):
+        try:
+            postfix_eval("4 <<")
+            self.fail()
+        except PostfixFormatException as e:
+            self.assertEqual(str(e), "Insufficient operands")
+
+    def test_postfix_eval_10(self):
+        try:
+            postfix_eval("4 >>")
             self.fail()
         except PostfixFormatException as e:
             self.assertEqual(str(e), "Insufficient operands")

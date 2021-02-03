@@ -62,8 +62,6 @@ def postfix_eval(input_str):
                         raise PostfixFormatException("Insufficient operands")
                     y = post_stack.pop()
                     x = post_stack.pop()
-                    if y == 0:
-                        raise ValueError
                     length -= 1
                     i += 1
                     post_stack.push(x ** y)

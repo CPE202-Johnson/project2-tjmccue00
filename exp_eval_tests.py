@@ -102,8 +102,7 @@ class test_expressions(unittest.TestCase):
         self.assertEqual(prefix_to_postfix('<< >> 3 / 2 1 - / 4 5 6'), '3 2 1 / >> 4 5 / 6 - <<')
 
     def test_convert_5(self):
-        def test_convert_2(self):
-            self.assertEqual(prefix_to_postfix('+ 4 + 4 4'), '4 4 + +')
+        self.assertEqual(prefix_to_postfix('/ 12 + 4 + 4 4'), '12 4 4 4 + + /')
 
 if __name__ == "__main__":
     unittest.main()

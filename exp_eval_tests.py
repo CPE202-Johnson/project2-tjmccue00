@@ -48,21 +48,7 @@ class test_expressions(unittest.TestCase):
 
     def test_postfix_eval_08(self):
         try:
-            postfix_eval("4 \**")
-            self.fail()
-        except PostfixFormatException as e:
-            self.assertEqual(str(e), "Insufficient operands")
-
-    def test_postfix_eval_09(self):
-        try:
-            postfix_eval("4 <<")
-            self.fail()
-        except PostfixFormatException as e:
-            self.assertEqual(str(e), "Insufficient operands")
-
-    def test_postfix_eval_10(self):
-        try:
-            postfix_eval("4 >>")
+            postfix_eval("4 **")
             self.fail()
         except PostfixFormatException as e:
             self.assertEqual(str(e), "Insufficient operands")
@@ -75,13 +61,7 @@ class test_expressions(unittest.TestCase):
             self.assertEqual(str(e), "Too many operands")
 
     def test_postfix_eval_12(self):
-        self.assertEqual(postfix_eval('5 1 2 + 4 \** + 3 -'), 83)
-
-    def test_postfix_eval_13(self):
-        self.assertEqual(postfix_eval('2 2 <<'), 8)
-
-    def test_postfix_eval_14(self):
-        self.assertEqual(postfix_eval('2 2 >>'), 0)
+        self.assertEqual(postfix_eval('5 1 2 + 4 ** + 3 -'), 83)
 
     def test_postfix_eval_15(self):
         self.assertEqual(postfix_eval('4 2 /'), 2)
@@ -97,9 +77,6 @@ class test_expressions(unittest.TestCase):
 
     def test_convert_3(self):
         self.assertEqual(prefix_to_postfix('** 3 / 2 1'), '3 2 1 / **')
-
-    def test_convert_4(self):
-        self.assertEqual(prefix_to_postfix('<< >> 3 / 2 1 - / 4 5 6'), '3 2 1 / >> 4 5 / 6 - <<')
 
     def test_convert_5(self):
         self.assertEqual(prefix_to_postfix('/ 12 + 4 + 4 4'), '12 4 4 4 + + /')

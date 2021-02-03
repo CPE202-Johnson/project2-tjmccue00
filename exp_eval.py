@@ -26,38 +26,30 @@ def postfix_eval(input_str):
                 if input_str[i] == '+':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
-                    y = post_stack.pop()
-                    x = post_stack.pop()
                     length -= 1
                     i += 1
-                    post_stack.push(x + y)
+                    post_stack.push(post_stack.pop() + post_stack.pop())
                 elif input_str[i] == '-':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
-                    y = post_stack.pop()
-                    x = post_stack.pop()
                     length -= 1
                     i += 1
-                    post_stack.push(x - y)
+                    post_stack.push(-post_stack.pop() + post_stack.pop())
                 elif input_str[i] == '*':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
-                    y = post_stack.pop()
-                    x = post_stack.pop()
                     length -= 1
                     i += 1
-                    post_stack.push(x * y)
+                    post_stack.push(post_stack.pop() * post_stack.pop())
                 elif input_str[i] == '/':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
-                    y = post_stack.pop()
-                    x = post_stack.pop()
-                    if y == 0:
+                    if post_stack.peek() == 0:
                         raise ValueError
                     length -= 1
                     i += 1
-                    post_stack.push(x / y)
-                elif input_str[i] == '\**':
+                    post_stack.push(post_stack.pop()**-1 * post_stack.pop())
+                elif input_str[i] == '**':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     y = post_stack.pop()
@@ -65,22 +57,6 @@ def postfix_eval(input_str):
                     length -= 1
                     i += 1
                     post_stack.push(x ** y)
-                elif input_str[i] == '>>':
-                    if post_stack.size() < 2:
-                        raise PostfixFormatException("Insufficient operands")
-                    y = post_stack.pop()
-                    x = post_stack.pop()
-                    length -= 1
-                    i += 1
-                    post_stack.push(x >> y)
-                elif input_str[i] == '<<':
-                    if post_stack.size() < 2:
-                        raise PostfixFormatException("Insufficient operands")
-                    y = post_stack.pop()
-                    x = post_stack.pop()
-                    length -= 1
-                    i += 1
-                    post_stack.push(x << y)
                 else:
                     raise PostfixFormatException("Invalid token")
     if post_stack.size() > 1:

@@ -60,6 +60,8 @@ def postfix_eval(input_str):
                         raise PostfixFormatException("Insufficient operands")
                     y = post_stack.pop()
                     x = post_stack.pop()
+                    if y == 0:
+                        raise ValueError
                     length -= 1
                     i += 1
                     post_stack.push(x ** y)
@@ -94,4 +96,49 @@ def prefix_to_postfix(input_str):
     Input argument:  a string containing a prefix expression where tokens are
     space separated.  Tokens are either operators + - * / ** >> << parentheses ( ) or numbers
     Returns a String containing a postfix expression(tokens are space separated)'''
-    pass
+    input_str = input_str.split(' ')
+    length = len(input_str)
+    post_stack = Stackin(length)
+    i = 1
+    while i <= length:
+        try:
+            x = int(input_str[length - i])
+            post_stack.push(input_str[length - i])
+            i += 1
+        except ValueError:
+            if input_str[length - i] == '+':
+                y = post_stack.pop()
+                x = post_stack.pop()
+                i += 1
+                post_stack.push(y+' '+x+' +')
+            elif input_str[length - i] == '-':
+                y = post_stack.pop()
+                x = post_stack.pop()
+                i += 1
+                post_stack.push(y+' '+x+' -')
+            elif input_str[length - i] == '*':
+                y = post_stack.pop()
+                x = post_stack.pop()
+                i += 1
+                post_stack.push(y+' '+x+' *')
+            elif input_str[length - i] == '/':
+                y = post_stack.pop()
+                x = post_stack.pop()
+                i += 1
+                post_stack.push(y+' '+x+' /')
+            elif input_str[length - i] == '**':
+                y = post_stack.pop()
+                x = post_stack.pop()
+                i += 1
+                post_stack.push(y+' '+x+' **')
+            elif input_str[length - i] == '>>':
+                y = post_stack.pop()
+                x = post_stack.pop()
+                i += 1
+                post_stack.push(y+' '+x+' >>')
+            elif input_str[length - i] == '<<':
+                y = post_stack.pop()
+                x = post_stack.pop()
+                i += 1
+                post_stack.push(y+' '+x+' <<')
+    return post_stack.pop()

@@ -28,5 +28,11 @@ class test_expressions(unittest.TestCase):
         except PostfixFormatException as e:
             self.assertEqual(str(e), "Too many operands")
 
+    def test_convert_1(self):
+        self.assertEqual(prefix_to_postfix('* - 3 / 2 1 - / 4 5 6'), '3 2 1 / - 4 5 / 6 - *')
+
+    def test_convert_2(self):
+        self.assertEqual(prefix_to_postfix('- 3 / 2 1'), '3 2 1 / -')
+
 if __name__ == "__main__":
     unittest.main()

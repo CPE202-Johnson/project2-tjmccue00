@@ -74,6 +74,18 @@ class test_expressions(unittest.TestCase):
         except PostfixFormatException as e:
             self.assertEqual(str(e), "Too many operands")
 
+    def test_postfix_eval_12(self):
+        self.assertEqual(postfix_eval('5 1 2 + 4 ** + 3 -'), 83)
+
+    def test_postfix_eval_13(self):
+        self.assertEqual(postfix_eval('2 2 <<'), 8)
+
+    def test_postfix_eval_14(self):
+        self.assertEqual(postfix_eval('2 2 >>'), 0)
+
+    def test_postfix_eval_15(self):
+        self.assertEqual(postfix_eval('4 2 /'), 2)
+
     def test_convert_1(self):
         self.assertEqual(prefix_to_postfix('* - 3 / 2 1 - / 4 5 6'), '3 2 1 / - 4 5 / 6 - *')
 

@@ -20,7 +20,7 @@ class TestLab2(unittest.TestCase):
         self.assertEqual(stack.peek(),13)
 
     def test_simple2(self):
-        stack = Stackin(12)
+        stack = Stackin(2)
         stack.push(2)
         stack.push('hi')
         self.assertTrue(stack.is_full())

@@ -16,32 +16,32 @@ def postfix_eval(input_str):
     length = len(input_str)
     post_stack = Stackin(length)
     i = 0
-    while length > 0:
+    for i in range(len(input_str)):
         try:
             x = int(input_str[i])
             post_stack.push(x)
             i += 1
             length -= 1
         except ValueError:
-                if input_str[i] == '+':
+                if input_str[i] in '+':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     length -= 1
                     i += 1
                     post_stack.push(post_stack.pop() + post_stack.pop())
-                elif input_str[i] == '-':
+                elif input_str[i] in '-':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     length -= 1
                     i += 1
                     post_stack.push(-post_stack.pop() + post_stack.pop())
-                elif input_str[i] == '*':
+                elif input_str[i] in '*':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     length -= 1
                     i += 1
                     post_stack.push(post_stack.pop() * post_stack.pop())
-                elif input_str[i] == '/':
+                elif input_str[i] in '/':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     if post_stack.peek() == 0:
@@ -49,14 +49,13 @@ def postfix_eval(input_str):
                     length -= 1
                     i += 1
                     post_stack.push(post_stack.pop()**-1 * post_stack.pop())
-                elif input_str[i] == '**':
+                elif input_str[i] in '**':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     y = post_stack.pop()
-                    x = post_stack.pop()
                     length -= 1
                     i += 1
-                    post_stack.push(x ** y)
+                    post_stack.push(post_stack.pop() ** y)
                 else:
                     raise PostfixFormatException("Invalid token")
     if post_stack.size() > 1:

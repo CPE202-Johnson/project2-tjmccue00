@@ -57,7 +57,7 @@ def postfix_eval(input_str):
                     length -= 1
                     i += 1
                     post_stack.push(x / y)
-                elif input_str[i] == '**':
+                elif input_str[i] == '\**':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     y = post_stack.pop()

@@ -82,28 +82,18 @@ def prefix_to_postfix(input_str):
             i += 1
         except ValueError:
             if input_str[length - i] == '+':
-                y = post_stack.pop()
-                x = post_stack.pop()
                 i += 1
-                post_stack.push(y+' '+x+' +')
+                post_stack.push(post_stack.pop()+' '+post_stack.pop()+' +')
             elif input_str[length - i] == '-':
-                y = post_stack.pop()
-                x = post_stack.pop()
                 i += 1
-                post_stack.push(y+' '+x+' -')
+                post_stack.push(post_stack.pop()+' '+post_stack.pop()+' -')
             elif input_str[length - i] == '*':
-                y = post_stack.pop()
-                x = post_stack.pop()
                 i += 1
-                post_stack.push(y+' '+x+' *')
+                post_stack.push(post_stack.pop()+' '+post_stack.pop()+' *')
             elif input_str[length - i] == '/':
-                y = post_stack.pop()
-                x = post_stack.pop()
                 i += 1
-                post_stack.push(y+' '+x+' /')
+                post_stack.push(post_stack.pop()+' '+post_stack.pop()+' /')
             elif input_str[length - i] == '**':
-                y = post_stack.pop()
-                x = post_stack.pop()
                 i += 1
-                post_stack.push(y+' '+x+' **')
+                post_stack.push(post_stack.pop()+' '+post_stack.pop()+' **')
     return post_stack.pop()

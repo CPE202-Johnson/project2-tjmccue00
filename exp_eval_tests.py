@@ -103,7 +103,7 @@ class test_expressions(unittest.TestCase):
 
     def test_convert_5(self):
         def test_convert_2(self):
-            self.assertEqual(prefix_to_postfix('+ 4 4'), '4 4 +')
+            self.assertEqual(prefix_to_postfix('+ 4 + 4 4'), '4 4 + +')
 
 if __name__ == "__main__":
     unittest.main()

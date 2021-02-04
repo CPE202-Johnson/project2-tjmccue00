@@ -71,7 +71,7 @@ def prefix_to_postfix(input_str):
     i = 1
     while i <= length:
         try:
-            x = int(input_str[length - i])
+            x = float(input_str[length - i])
             post_stack.push(input_str[length - i])
             i += 1
         except ValueError:

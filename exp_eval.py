@@ -17,11 +17,11 @@ def postfix_eval(input_str):
     post_stack = Stackin(length)
     i = 0
     for i in range(len(input_str)):
-        if input_str[i].isdigit(): # try:
+        try:
             x = float(input_str[i])
             post_stack.push(x)
             i += 1
-        else:# except ValueError:
+        except ValueError:
                 if input_str[i] == '+':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
@@ -93,3 +93,5 @@ def prefix_to_postfix(input_str):
             else:
                 i += 1
     return post_stack.pop()
+
+# print(postfix_eval('12.0'))

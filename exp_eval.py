@@ -17,34 +17,34 @@ def postfix_eval(input_str):
     post_stack = Stackin(length)
     i = 0
     for i in range(len(input_str)):
-        try:
+        if input_str[i].isdigit(): # try:
             x = float(input_str[i])
             post_stack.push(x)
             i += 1
-        except ValueError:
-                if input_str[i] in '+':
+        else:# except ValueError:
+                if input_str[i] == '+':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     i += 1
                     post_stack.push(post_stack.pop() + post_stack.pop())
-                elif input_str[i] in '-':
+                elif input_str[i] == '-':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     i += 1
                     post_stack.push(-post_stack.pop() + post_stack.pop())
-                elif input_str[i] in '*':
+                elif input_str[i] == '*':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     i += 1
                     post_stack.push(post_stack.pop() * post_stack.pop())
-                elif input_str[i] in '/':
+                elif input_str[i] == '/':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     if post_stack.peek() == 0:
                         raise ValueError
                     i += 1
                     post_stack.push(post_stack.pop()**-1 * post_stack.pop())
-                elif input_str[i] in '**':
+                elif input_str[i] == '**':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     y = post_stack.pop()

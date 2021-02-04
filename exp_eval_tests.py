@@ -84,5 +84,8 @@ class test_expressions(unittest.TestCase):
     def test_convert_5(self):
         self.assertEqual(prefix_to_postfix('/ 12 + 4 + 4 4'), '12 4 4 4 + + /')
 
+    def test_convert_6(self):
+        self.assertEqual(prefix_to_postfix('12 p'), '12')
+
 if __name__ == "__main__":
     unittest.main()

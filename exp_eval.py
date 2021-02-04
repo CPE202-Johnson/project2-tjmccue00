@@ -18,7 +18,7 @@ def postfix_eval(input_str):
     i = 0
     for i in range(len(input_str)):
         try:
-            x = int(input_str[i])
+            x = float(input_str[i])
             post_stack.push(x)
             i += 1
         except ValueError:

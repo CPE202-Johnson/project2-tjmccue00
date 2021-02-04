@@ -69,6 +69,9 @@ class test_expressions(unittest.TestCase):
     def test_postfix_eval_16(self):
         self.assertEqual(postfix_eval('4 2 *'), 8)
 
+    # def test_postfix_eval_17(self):
+    #     self.assertEqual(postfix_eval('11 12 * 13 + 14 15 / **'))
+
     def test_convert_1(self):
         self.assertEqual(prefix_to_postfix('* - 3 / 2 1 - / 4 5 6'), '3 2 1 / - 4 5 / 6 - *')
 

@@ -21,24 +21,20 @@ def postfix_eval(input_str):
             x = int(input_str[i])
             post_stack.push(x)
             i += 1
-            length -= 1
         except ValueError:
                 if input_str[i] in '+':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
-                    length -= 1
                     i += 1
                     post_stack.push(post_stack.pop() + post_stack.pop())
                 elif input_str[i] in '-':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
-                    length -= 1
                     i += 1
                     post_stack.push(-post_stack.pop() + post_stack.pop())
                 elif input_str[i] in '*':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
-                    length -= 1
                     i += 1
                     post_stack.push(post_stack.pop() * post_stack.pop())
                 elif input_str[i] in '/':
@@ -46,14 +42,12 @@ def postfix_eval(input_str):
                         raise PostfixFormatException("Insufficient operands")
                     if post_stack.peek() == 0:
                         raise ValueError
-                    length -= 1
                     i += 1
                     post_stack.push(post_stack.pop()**-1 * post_stack.pop())
                 elif input_str[i] in '**':
                     if post_stack.size() < 2:
                         raise PostfixFormatException("Insufficient operands")
                     y = post_stack.pop()
-                    length -= 1
                     i += 1
                     post_stack.push(post_stack.pop() ** y)
                 else:

@@ -90,4 +90,6 @@ def prefix_to_postfix(input_str):
             elif input_str[length - i] == '**':
                 i += 1
                 post_stack.push(post_stack.pop()+' '+post_stack.pop()+' **')
+            else:
+                i += 1
     return post_stack.pop()
